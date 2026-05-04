@@ -12,7 +12,6 @@ class Incident:
             Название поля в MP SIEM: incident.description
         status (str): Текущий статус инцидента ['Создан','Взят в работу','Закрыт']. 
             Допустимые значения: 'Создан', 'Взят в работу', 'Закрыт'.
-            Название поля в MP SIEM: object.state
         source (str): Источник алерта AV,IDS,SIEM,сообщение от пользователя.
             Название поля в MP SIEM: event_src.category
         timestamp (datetime): Временная метка в формате DateTime YYYY-MM-DD'T'HH:MM:SS.
@@ -40,41 +39,41 @@ class Incident:
         is_false_positive (bool): Флаг ложноположительного срабатывания.
         details (Dict[str, Any]): Поле для обогащенных данных из внешних систем.
             Сюда записываются результаты из VirusTotal, Shodan, AD info и тп.
-            Название поля в MP SIEM: body
+            Название поля в MP SIEM: alert.context
     """
 
-    def __init__(self, 
-                 name: str, 
-                 description: str, 
-                 status: str, 
-                 source: str, 
-                 timestamp: datetime, 
-                 category: str, 
-                 severity: str, 
-                 assigned_uid: str, 
-                 related_addresses: list[str], 
-                 fqdn: str,
-                 domain: str,
-                 affected_user: str,
-                 user_role: str,
-                 ext_address: str, 
-                 iocs: str,
-                 is_false_positive: bool,
-                 details: dict[str, any]):
-        self.name = name
-        self.description = description
-        self.status = status
-        self.source = source
-        self.timestamp = timestamp
-        self.category = category
-        self.severity = severity
-        self.assigned_uid = assigned_uid
-        self.related_addresses = related_addresses
-        self.fqnd = fqdn
-        self.domain = domain
-        self.affected_user = affected_user
-        self.user_role = user_role
-        self.ext_address = ext_address
-        self.iocs = iocs
-        self.is_false_positive = is_false_positive
-        self.details = details
+    def __init__(self,siem_alert: dict[str,any]):
+        
+        self.mapping_mp_siem(siem_alert)
+
+    def get_details_as_json(input_json_string) -> dict:
+        """
+        Преобразует всю обогащенную инфу в формат
+
+
+        "ИСТОЧНИК":"ИНФОРМАЦИЯ" 
+        
+        str:str
+        
+        """
+        
+        pass
+
+    def mapping_mp_siem(self,siem_alert: dict[str,any]):
+        self.name = siem_alert.get("incident.name","noname")
+        self.description = siem_alert.get("incident.description","")
+        self.status = "Создан"
+        self.source = siem_alert.get("event_src.category","Источник не определен")
+        self.source = siem_alert.get("time",str(datetime.now()))
+        self.category = siem_alert.get("incident.category","Тип не определен")
+        self.severity = siem_alert.get("incident.severity","-")
+        self.assigned_uid = siem_alert.get("incident.assigned_to_user_id","Отвественный не задан")
+        self.related_addresses = siem_alert.get("incident.related_addresses",[])
+        self.fqnd = siem_alert.get("incident.related_addresses",[])
+        self.affected_user = siem_alert.get("object.account.name","-")
+        self.user_role = siem_alert.get("object.account.privileges","-")
+        self.domain = siem_alert.get("object.domain","-")
+        self.ext_address = siem_alert.get("incident.attacking_addresses",[])
+        self.iocs = siem_alert.get("alert.ioc_value","-")
+        self.is_false_positive = False
+        self.details = self.get_details_as_json(siem_alert.get("alert.context","{}"))
