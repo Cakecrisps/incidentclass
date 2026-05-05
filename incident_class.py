@@ -16,6 +16,7 @@ class Incident:
             Название поля в MP SIEM: event_src.category
         timestamp (datetime): Временная метка в формате DateTime YYYY-MM-DD'T'HH:MM:SS.
             Название поля в MP SIEM: subevents.time
+        close_timestamp (datetime): Временная метка закрытия инцидента в формате DateTime YYYY-MM-DD'T'HH:MM:SS.
         category (str): Категория инцидента ['BruteForce','DataLeak','Ransomware',....].
             Название поля в MP SIEM: incident.category
         severity (str): Критичность инцидента ['low','medium','high','critical']. 
@@ -64,7 +65,8 @@ class Incident:
         self.description = siem_alert.get("incident.description","")
         self.status = "Создан"
         self.source = siem_alert.get("event_src.category","Источник не определен")
-        self.source = siem_alert.get("time",str(datetime.now()))
+        self.timestamp = siem_alert.get("time",str(datetime.now()))
+        self.closetimestamp = "-"
         self.category = siem_alert.get("incident.category","Тип не определен")
         self.severity = siem_alert.get("incident.severity","-")
         self.assigned_uid = siem_alert.get("incident.assigned_to_user_id","Отвественный не задан")
