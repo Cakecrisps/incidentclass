@@ -10,7 +10,7 @@ class Vuln:
     Asset <-> Host-based Vulnerability <-> Vulnerability
 
 
-    В MP VM нужно забирать 2 сущности актив(Asset),уязвимость(Host-based Vulnerability) и паспорт уязвимости(Vulnerability)
+    В MP VM нужно забирать 3 сущности актив(Asset),уязвимость(Host-based Vulnerability) и паспорт уязвимости(Vulnerability)
 
 
     Attributes:
