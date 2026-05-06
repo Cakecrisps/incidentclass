@@ -9,6 +9,10 @@ class Vuln:
 
     Asset <-> Host-based Vulnerability <-> Vulnerability
 
+    Asset -> список уязвимостей на этом хосте
+    Vulnerability -> список хостов для этой уязвимости
+
+
 
     В MP VM нужно забирать 3 сущности актив(Asset),уязвимость(Host-based Vulnerability) и паспорт уязвимости(Vulnerability)
 
