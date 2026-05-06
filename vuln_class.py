@@ -9,7 +9,7 @@ class Vuln:
 
     Asset <-> Host-based Vulnerability <-> Vulnerability
 
-    Asset -> список уязвимостей на этом хосте
+    Asset -> список обнаруженных уязвимостей на этом хосте
     Vulnerability -> список хостов для этой уязвимости
 
 
