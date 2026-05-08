@@ -3,7 +3,7 @@ class Assets:
     """
     Объект класса актив
     
-    Источники данных для модуля инвентаризации:AD,KSC,SCCM,DHCP сервер,гипервизоры,
+    Источники данных для модуля инвентаризации:AD,KSC,SCCM,DHCP сервер,гипервизоры,ansible.
     
     Attributes:
         assets_name(string) - имя актива.
@@ -20,7 +20,7 @@ class Assets:
             Пример: организация
             Мапинг в AD: o / company
         responsible(string) - отвественный
-        managedBy
+            Мапинг в AD: managedBy
         os_name(string) - название операционной системы
             Пример: Windows 11 Pro 25H2
             Мапинг в AD: operatingSystem
