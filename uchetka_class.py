@@ -1,5 +1,8 @@
 class AdUserAccount:
     """
+
+    Источники: AD,Azure AD,FreeIPA,LAPS,ssh,KSC и др EDR могут отдавать учетки
+
     account_name(string) - логин пользователья в системе
         Пример: mskdc1adm
         Мапинг в AD: sAMAccountName
@@ -8,6 +11,8 @@ class AdUserAccount:
         Мапинг в AD:  manager
     email(string) - рабочая почта отвественного
         Мапинг в AD: mail
+    description(string) - описание учетной записи
+        Мапинг в AD: description
     department(string) - департамент или отдел responsible
         Мапинг в AD: Либо через юниты,либо через department
     account_type(string) - тип аккаунта(User,Service,Admin,Shared)
