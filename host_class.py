@@ -3,7 +3,7 @@ class Assets:
     """
     Объект класса актив
     
-    Источники данных для модуля инвентаризации:AD,KSC,SCCM,DHCP сервер,гипервизоры,ansible.
+    Источники данных для модуля инвентаризации:AD,KSC,SCCM,DHCP сервер,гипервизоры,ansible. formen
     
     Attributes:
         assets_name(string) - имя актива.
