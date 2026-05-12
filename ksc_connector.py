@@ -11,7 +11,8 @@ class ksc_connector:
             mac,hardware,serial_number,InvNum
             status
             description
-            
+            "KLHST_LOCATION"
+            "HST_VM_TYPE"    
     
     
     """
