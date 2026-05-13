@@ -1,9 +1,7 @@
 class ksc_connector:
     """
     API endpoint: POST https://<ksc_host>:13299/api/v1.0/<Method>
-    Основной метод поиска хостов: HostGroup.FindHosts + ChunkAccessor.GetItemsChunk
-    Результат итерируется постранично через strAccessor токен.
- 
+    Основной метод поиска хостов: HostGroup.FindHosts 
     Attributes:
  
         host — данные об управляемом устройстве (сущность Assets):
